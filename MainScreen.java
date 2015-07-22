@@ -78,18 +78,7 @@ public class MainScreen extends Application {
 							System.out.println("circleList size is now: " + circleList.size());
 						}
 					}
-					
-					
-					//if (event.getSceneX() <= circle.getBoundsInLocal().getMaxX() ) {
-						//if(event.getSceneY() <= circle.getBoundsInLocal().getMaxY() ) {
-//
-	//						canvas.getChildren().remove(circleList.get(circleList.size()-1));
-		//					circleList.remove(circleList.size() -1);
-			//				System.out.println("circleList size is now: " + circleList.size());
-				//		}
-					//}
-				//}
-			}		
+		                }		
 		}});
 	}
 
