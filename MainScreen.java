@@ -33,6 +33,7 @@ public class MainScreen extends Application {
 	}
 	public void start(Stage mainStage) throws Exception{
 		mainStage.setTitle("Sa(fx)er");
+		mainStage.setResizable(false);
 		
 		//create rootNode, call it canvas by convention
 		canvas = new Pane();
@@ -71,11 +72,11 @@ public class MainScreen extends Application {
 				System.out.println("Circle centreX: " + circle.getCenterX());
 				if(circleList.size() >= 2) {
 					// if the click is in the circle radius
-					if (  (circle.getLayoutX()-circle.getRadius()) <<= event.getSceneX() <<= (circle.getLayoutX()+circle.getRadius())  ) {
-						if (  (circle.getLayoutY()-circle.getRadius()) <<= event.getSceneY() <<= (circle.getLayoutY()+circle.getRadius())  ) {
+					if (  event.getSceneX() >= (circle.getLayoutX() -circle.getRadius())  && (event.getSceneX() <= (circle.getLayoutX()+circle.getRadius()))        ){
+						if (  event.getSceneY() >= (circle.getLayoutY() -circle.getRadius())  && (event.getSceneY() <= (circle.getLayoutY())+circle.getRadius())    ){
 							canvas.getChildren().remove(circleList.get(circleList.size()-1));
 							circleList.remove(circleList.size() -1);
-							System.out.println("circleList size is now: " + circleList.size());
+							circle.setRadius(circle.getRadius() + 1);
 						}
 					}
 		                }		
