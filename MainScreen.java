@@ -67,10 +67,8 @@ public class MainScreen extends Application {
 		mainScene.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				//System.out.println("MouseClick detected");
 				System.out.println("MouseX is: " + event.getSceneX() + "MouseY is: " + event.getSceneY());
 				System.out.println("CircleX is: " + circle.getLayoutX() + "CircleY is: " + circle.getLayoutY());
-				//System.out.println("Circle centreX: " + circle.getCenterX());
 				System.out.println("Click distance is" + Math.sqrt(     
 				        Math.pow( (event.getSceneX() - circle.getLayoutX()) , 2)  + 
 				        Math.pow( (event.getSceneY() - circle.getLayoutY()) , 2) 
