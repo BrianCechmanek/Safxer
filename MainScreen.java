@@ -22,8 +22,9 @@ public class MainScreen extends Application {
 	private ArrayList<Circle> circleList;
 	
 	public static void main(String[] args) {
-		launch(args);
 		System.out.println("Launching fx saver...");
+		launch(args);
+		
 	}
 	public void stop() {
 		System.out.println("Overridden stop()...");
@@ -66,20 +67,30 @@ public class MainScreen extends Application {
 		mainScene.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				System.out.println("MouseClick detected");
+				//System.out.println("MouseClick detected");
 				System.out.println("MouseX is: " + event.getSceneX() + "MouseY is: " + event.getSceneY());
 				System.out.println("CircleX is: " + circle.getLayoutX() + "CircleY is: " + circle.getLayoutY());
-				System.out.println("Circle centreX: " + circle.getCenterX());
+				//System.out.println("Circle centreX: " + circle.getCenterX());
+				System.out.println("Click distance is" + Math.sqrt(     
+				        Math.pow( (event.getSceneX() - circle.getLayoutX()) , 2)  + 
+				        Math.pow( (event.getSceneY() - circle.getLayoutY()) , 2) 
+				        ) + "radius is " + circle.getRadius());
+				
 				if(circleList.size() >= 2) {
-					// if the click is in the circle radius
-					if (  event.getSceneX() >= (circle.getLayoutX() -circle.getRadius())  && (event.getSceneX() <= (circle.getLayoutX()+circle.getRadius()))        ){
-						if (  event.getSceneY() >= (circle.getLayoutY() -circle.getRadius())  && (event.getSceneY() <= (circle.getLayoutY())+circle.getRadius())    ){
-							canvas.getChildren().remove(circleList.get(circleList.size()-1));
-							circleList.remove(circleList.size() -1);
-							circle.setRadius(circle.getRadius() + 1);
-						}
-					}
-		                }		
+					// if click is in the circle radius, now with better math!
+					// distance is sqrt[  ((xOfClick - xOfCircle)^2 + (yOfClick - yOfCircle)^2) ] 
+					if (
+					    Math.sqrt(     
+					        Math.pow( (event.getSceneX() - circle.getLayoutX()) , 2)  + 
+					        Math.pow( (event.getSceneY() - circle.getLayoutY()) , 2) 
+					        ) <=  
+						    circle.getRadius()
+					) {
+					     canvas.getChildren().remove(circleList.get(circleList.size()-1));
+						 circleList.remove(circleList.size() -1);
+					 	 circle.setRadius(circle.getRadius() + 1);
+					};
+		    }		
 		}});
 	}
 
